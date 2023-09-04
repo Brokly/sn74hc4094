@@ -26,7 +26,7 @@ void SN74HC4094Component::setup() {
   this->write_gpio_();
 }
 
-void SN74HC4094Component::dump_config() { ESP_LOGCONFIG(TAG, "SN74HC4094:"); }
+void SN74HC4094Component::dump_config() { ESP_LOGCONFIG(TAG, "SN74HC4094 (device(s) %d):", this->sr_count_); }
 
 void SN74HC4094Component::digital_write_(uint16_t pin, bool value) {
   if (pin >= this->sr_count_ * 8) {
@@ -43,8 +43,7 @@ void SN74HC4094Component::write_gpio_() {
      this->clock_pin_->digital_write(false);
      this->data_pin_->digital_write(*bit);
      this->clock_pin_->digital_write(true);
- }
-
+  }
   // pulse strobe to activate new values
   this->stb_pin_->digital_write(false);
   this->stb_pin_->digital_write(true);
