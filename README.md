@@ -3,6 +3,11 @@ Outputs Expander for ESPHome on 74HC4094
 
 The SN74HC4094 component allows you to use 74HC4094 shift registers as output expanders in ESPHome. It uses 3 wires (optionally 4) for communication.
 
+![image](https://github.com/Brokly/sn74hc4094/assets/11642286/245fbe20-210e-4fc3-9242-9e6b510b5c70)
+
+![image](https://github.com/Brokly/sn74hc4094/assets/11642286/b36bd7ec-61de-4af0-a7c9-9e533035f51a)
+
+
 Once configured, you can use any of the 8 pins for your projects. Up-to 256 shift registers can be daisy-chained to provide more pins, without using more GPIO pins on the controller.
 
 Use of the OE pin is optional. If used, the pin should be pulled up externally.
