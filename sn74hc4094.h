@@ -39,6 +39,7 @@ class SN74HC4094Component : public Component {
   friend class SN74HC4094GPIOPin;
   void digital_write_(uint16_t pin, bool value);
   void write_gpio_();
+  std::string strState_();
 
   GPIOPin *data_pin_{0};
   GPIOPin *clock_pin_{0};
@@ -46,12 +47,14 @@ class SN74HC4094Component : public Component {
   GPIOPin *oe_pin_{nullptr};
   uint8_t sr_count_{0};
   std::vector<bool> output_bits_;
+  bool do_write=false;
+  
 };
 
 /// Helper class to expose a SC74HC595 pin as an internal output GPIO pin.
 class SN74HC4094GPIOPin : public GPIOPin, public Parented<SN74HC4094Component> {
  public:
-  void setup() override {}
+  void setup() override;
   void pin_mode(gpio::Flags flags) override {}
   bool digital_read() override { return state_; }
   void digital_write(bool value) override;
