@@ -51,11 +51,11 @@ class SN74HC4094Component : public Component {
   
 };
 
-/// Helper class to expose a SC74HC595 pin as an internal output GPIO pin.
+/// Helper class to expose a SC74HC595 pin as an internal output GPIO pin. (595)
 class SN74HC4094GPIOPin : public GPIOPin, public Parented<SN74HC4094Component> {
  public:
   void setup() override;
-  void pin_mode(gpio::Flags flags) override {}
+  void pin_mode(gpio::Flags flags) override {};
   bool digital_read() override { return state_; }
   void digital_write(bool value) override;
   std::string dump_summary() const override;
@@ -68,6 +68,7 @@ class SN74HC4094GPIOPin : public GPIOPin, public Parented<SN74HC4094Component> {
      inverted_ = inverted; 
      state_ = false;
   }
+  gpio::Flags get_flags() const override { return gpio::Flags::FLAG_OUTPUT; }  /// Always returns `gpio::Flags::FLAG_OUTPUT`.
 
  protected:
   uint16_t pin_;
